@@ -1,0 +1,28 @@
+#{extends 'main.html'/}
+
+<a href="/">Retourner à l'accueil</a><br/><br/>
+
+<a href="@{ChampionsController.create(ligne="Top")}">&{'Ajouter un champion en Top'}</a><br/>
+<a href="@{ChampionsController.create(ligne="Mid")}">&{'Ajouter un champion en Mid'}</a>
+
+<br/><br/>
+
+<div class="tableau">
+    <div class="col">
+        top
+    </div>
+    <div class="col">jgl</div>
+    <div class="col">mid</div>
+    <div class="col">sup</div>
+    <div class="col">adc</div>
+</div>
+
+<br/><br/>
+Champions TOP : <br/><br/>
+
+#{list items:listeChampion, as:'champion'}
+${champion_index} : ${champion.nom},${champion.ligne}
+#{/list}
+
+<br/>
+Nombre de champions dans la liste : ${listeChampion.size()}

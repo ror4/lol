@@ -1,0 +1,20 @@
+table
+{
+    border-collapse: collapse; /* Les bordures du tableau seront collées (plus joli) */
+}
+td
+{
+    border: 1px solid black;
+}
+
+.tableau{
+    width: 60%;
+    border-top: 1px solid black;
+}
+
+.col{
+
+    width: 20%;
+    text-align:center;
+    float:left;
+}

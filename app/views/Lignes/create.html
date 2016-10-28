@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
+    <title>save</title>
+</head>
+<body>
+
+<a href="/">Retourner à l'accueil</a>
+<br/><br/>
+
+cinna veut que j'affiche : ${ligne}<br/>
+
+<form action="@{ChampionsController.create}" method="post">
+    <select name="champion.nom">
+        <option value=""></option>
+        <option value="Aatrox">Aatrox</option>
+        <option value="Ahri">Ahri</option>
+    </select>
+    <input type="hidden" name="champion.ligne" value=${ligne}>
+    <input type="submit" value="Go!">
+</form>
+<span id="result"></span>
+
+<img id="1" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Aatrox.png" title="Aatrox" border="4">
+<img id="2" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Ahri.png" title="Ahri" border="4">
+
+<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+<script src="@{'/public/javascripts/lol.js'}"></script>
+
+</body>
+</html>
