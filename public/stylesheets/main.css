@@ -1,20 +1,47 @@
+*{
+    box-sizing:border-box;
+}
+
 table
 {
     border-collapse: collapse; /* Les bordures du tableau seront collées (plus joli) */
 }
-td
-{
-    border: 1px solid black;
-}
 
 .tableau{
     width: 60%;
+/*
     border-top: 1px solid black;
+*/
 }
 
 .col{
 
     width: 20%;
     text-align:center;
+    border-right: 1px solid black;
     float:left;
+}
+
+.col1{
+
+    width: 20%;
+    text-align:center;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    float:left;
+}
+
+.ligne1{
+
+    width: 100%;
+    text-align:center;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.ligne{
+
+    width: 100%;
+    text-align:center;
+    border-bottom: 1px solid black;
 }

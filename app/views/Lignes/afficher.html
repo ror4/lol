@@ -7,22 +7,60 @@
 
 <br/><br/>
 
+max : ${tailleListes.get(1)}
+
 <div class="tableau">
-    <div class="col">
-        top
+    <div class="col1">
+        <div class="ligne1">top</div>
+        #{list items:listeChampion, as:'champion'}
+        #{if champion.ligne.equals("Top")}
+        <div class="ligne">${champion.nom}</div>
+        #{/if}
+        #{/list}
+
+        <div class="ligne"></div>
     </div>
-    <div class="col">jgl</div>
-    <div class="col">mid</div>
-    <div class="col">sup</div>
-    <div class="col">adc</div>
+    <div class="col">
+        <div class="ligne1">jungle</div>
+        #{list items:listeChampion, as:'champion'}
+        #{if champion.ligne.equals("Jungle")}
+        <div class="ligne">${champion.nom}</div>
+        #{/if}
+        #{/list}
+    </div>
+    <div class="col">
+        <div class="ligne1">mid</div>
+        #{list items:listeChampion, as:'champion'}
+        #{if champion.ligne.equals("Mid")}
+        <div class="ligne">${champion.nom}</div>
+        #{/if}
+        #{/list}
+    </div>
+    <div class="col">
+        <div class="ligne1">adc</div>
+        #{list items:listeChampion, as:'champion'}
+        #{if champion.ligne.equals("Adc")}
+        <div class="ligne">${champion.nom}</div>
+        #{/if}
+        #{/list}</div>
+    <div class="col">
+        <div class="ligne1">support</div>
+        #{list items:listeChampion, as:'champion'}
+        #{if champion.ligne.equals("Support")}
+        <div class="ligne">${champion.nom}</div>
+        #{/if}
+        #{/list}
+    </div>
 </div>
 
-<br/><br/>
-Champions TOP : <br/><br/>
+<!--<br/><br/>-->
+<!--Champions TOP : <br/><br/>-->
 
-#{list items:listeChampion, as:'champion'}
-${champion_index} : ${champion.nom},${champion.ligne}
-#{/list}
+<!--#{list items:listeChampion, as:'champion'}-->
+<!--#{if champion.ligne.equals("Top")}-->
+<!--${champion_index} : ${champion.nom},${champion.ligne}-->
+<!--#{/if}-->
+<!--#{/list}-->
 
-<br/>
-Nombre de champions dans la liste : ${listeChampion.size()}
+<!--<br/>-->
+<!--Nombre de champions dans la liste : ${listeChampion.size()}-->
