@@ -2,8 +2,6 @@
 
 <a href="/">Retourner à l'accueil</a><br/><br/>
 
-<a href="@{ChampionsController.create(ligne="Top")}">&{'Ajouter un champion en Top'}</a><br/>
-<a href="@{ChampionsController.create(ligne="Mid")}">&{'Ajouter un champion en Mid'}</a>
 
 <br/><br/>
 
@@ -11,7 +9,8 @@ max : ${tailleListes.get(1)}
 
 <div class="tableau">
     <div class="col1">
-        <div class="ligne1">top</div>
+        <div class="ligne1">Top <a href="@{ChampionsController.create(ligne="Top")}"><img src="/public/images/add-icon.png"/></a>
+        </div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Top")}
         <div class="ligne">${champion.nom}</div>
@@ -21,7 +20,8 @@ max : ${tailleListes.get(1)}
         <div class="ligne"></div>
     </div>
     <div class="col">
-        <div class="ligne1">jungle</div>
+        <div class="ligne1">Jungle <a href="@{ChampionsController.create(ligne="Jungle")}">&{'Ajouter'}</a>
+        </div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Jungle")}
         <div class="ligne">${champion.nom}</div>
@@ -29,7 +29,8 @@ max : ${tailleListes.get(1)}
         #{/list}
     </div>
     <div class="col">
-        <div class="ligne1">mid</div>
+        <div class="ligne1">Mid <a href="@{ChampionsController.create(ligne="Mid")}">&{'Ajouter'}</a>
+        </div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Mid")}
         <div class="ligne">${champion.nom}</div>
@@ -37,14 +38,16 @@ max : ${tailleListes.get(1)}
         #{/list}
     </div>
     <div class="col">
-        <div class="ligne1">adc</div>
+        <div class="ligne1">Adc <a href="@{ChampionsController.create(ligne="Adc")}">&{'Ajouter'}</a>
+        </div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Adc")}
         <div class="ligne">${champion.nom}</div>
         #{/if}
         #{/list}</div>
     <div class="col">
-        <div class="ligne1">support</div>
+        <div class="ligne1">Support <a href="@{ChampionsController.create(ligne="Support")}">&{'Ajouter'}</a>
+        </div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Support")}
         <div class="ligne">${champion.nom}</div>
