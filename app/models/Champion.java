@@ -10,4 +10,5 @@ import java.util.List;
 public class Champion extends Model {
     public String nom;
     public String ligne;
+    public Integer preference;
 }

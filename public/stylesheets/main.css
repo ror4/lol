@@ -2,46 +2,50 @@
     box-sizing:border-box;
 }
 
-table
-{
-    border-collapse: collapse; /* Les bordures du tableau seront collées (plus joli) */
-}
-
-.tableau{
+div.tableau{
     width: 60%;
-/*
-    border-top: 1px solid black;
-*/
 }
 
-.col{
+div.col{
 
     width: 20%;
     text-align:center;
-    border-right: 1px solid black;
+    border-right: 1px solid red;
     float:left;
 }
 
-.col1{
+div.col0{
 
     width: 20%;
     text-align:center;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
     float:left;
 }
 
-.ligne1{
+div.col1{
 
-    width: 100%;
+    width: 20%;
     text-align:center;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
+    border-left: 1px solid red;
+    border-right: 1px solid red;
+    float:left;
 }
 
-.ligne{
+div.ligne1{
 
     width: 100%;
     text-align:center;
-    border-bottom: 1px solid black;
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
+}
+
+div.ligne{
+    width: 100%;
+    height: 176px;
+    text-align:center;
+    border-bottom: 1px solid red;
+}
+
+img.ligne{
+    width: 95%;
+    align:center;
 }

@@ -15,7 +15,7 @@ $(function() {
         });
     }).change();
 
-    $("img").hide();
+    $("img.cachee").hide();
 
     // $('#texteJQ').html('Hello world. Ce texte est affiché par jQuery.');
 

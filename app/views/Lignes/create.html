@@ -10,6 +10,7 @@
 <a href="/">Retourner à l'accueil</a>
 <br/><br/>
 
+Ajouter un Champion <br/>
 <form action="@{ChampionsController.create}" method="post">
     <select name="champion.nom">
         <option value=""></option>
@@ -146,16 +147,26 @@
         <option value='Zilean'>Zilean</option>
         <option value='Zyra'>Zyra</option>
     </select>
+
     <input type="hidden" name="champion.ligne" value=${ligne}>
-    <input type="submit" value="Go!">
+    <input type="hidden" name="champion.preference" value=${preference}>
+    <input type="submit" value="Ok">
 </form>
-<span id="result"></span>
 
-<img id="1" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Aatrox.png" title="Aatrox" border="4">
-<img id="2" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Ahri.png" title="Ahri" border="4">
+<br/><br/>
+<div class="tableau">
+    #{list items:listeChampion, as:'champion'}
+    #{if champion.ligne.equals("Top")}
+    <div class="col0"># ${champion.preference} : ${champion.nom}<br/><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
+    #{/if}
+    #{/list}
+</div>
 
-<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
-<script src="@{'/public/javascripts/lol.js'}"></script>
+<!--<img class="cachee" id="1" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Aatrox.png" title="Aatrox" border="4">-->
+<!--<img class="cachee" id="2" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Ahri.png" title="Ahri" border="4">-->
+
+<!--<script src="//code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>-->
+<!--<script src="@{'/public/javascripts/lol.js'}"></script>-->
 
 </body>
 </html>
