@@ -156,7 +156,7 @@ Ajouter un Champion <br/>
 <br/><br/>
 <div class="tableau">
     #{list items:listeChampion, as:'champion'}
-    #{if champion.ligne.equals("Top")}
+    #{if champion.ligne.equals(ligne)}
     <div class="col0"># ${champion.preference} : ${champion.nom}<br/><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
     #{/if}
     #{/list}
