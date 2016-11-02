@@ -6,7 +6,7 @@
 GET     /                                       Application.index
 
 # ListeChampions
-GET    /ajouterChampion                         ChampionsController.create(ligne,preference)
+GET    /ajouterChampion                         ChampionsController.create(ligne,preference,modeSuppression)
 POST   /ajouterChampion                         ChampionsController.save
 GET    /liste                                   ChampionsController.afficher
 GET    /deleteChampion                          ChampionsController.delete(id)

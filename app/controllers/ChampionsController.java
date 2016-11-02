@@ -15,9 +15,9 @@ import java.util.stream.Collectors;
 
 public class ChampionsController extends Controller {
 
-    public static void create(String ligne, Integer preference) {
+    public static void create(String ligne, Integer preference, Boolean modeSuppression) {
         List<Champion> listeChampion = ChampionService.getAllChampions();
-        renderTemplate("/Lignes/create.html",ligne,preference,listeChampion);
+        renderTemplate("/Lignes/create.html",ligne,preference,listeChampion,modeSuppression);
     }
 
     public static void save(Champion champion) {

@@ -5,9 +5,10 @@
     <link rel="stylesheet" media="screen" href="@{'/public/stylesheets/main.css'}">
     <title>save</title>
 </head>
-<body>
+<a>
 
-<a href="/">Retourner à l'accueil</a>
+<a href="/">Retourner à l'accueil</a><br/>
+<a href="/liste">Retourner à la sélection</a>
 <br/><br/>
 
 Ajouter un Champion <br/>
@@ -153,11 +154,31 @@ Ajouter un Champion <br/>
     <input type="submit" value="Ok">
 </form>
 
+<!--<br/><br/>-->
+<!--Modifier préférence : <br/>-->
+<!--<form>-->
+    <!--<select name="champion.preference">-->
+        <!--#{list items:1..preference, as:'i'}-->
+            <!--<option value="i">${i}</option>-->
+        <!--#{/list}-->
+    <!--</select>-->
+    <!--<input type="submit" value="Ok">-->
+<!--</form>-->
+
+<a href="@{ChampionsController.create(ligne=ligne,preference=preference,modeSuppression=true)}">&{'Modifier'}</a>
+
+${modeSuppression}
+
 <br/><br/>
-<div class="tableau">
+Classement champions ${ligne} : <br/><br/>
+<div>
     #{list items:listeChampion, as:'champion'}
     #{if champion.ligne.equals(ligne)}
-    <div class="col0 conteneur"># ${champion.preference} : ${champion.nom}<br/><img class="modif" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"><a href="@{ChampionsController.delete(champion.id)}"><img class="icone" src="http://www.icone-png.com/png/19/18859.png" title="Supprimer ${champion.nom}"></a></div>
+    <div class="col0 conteneur"># ${champion.preference} : ${champion.nom}<br/><img class="modif" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4">
+        #{if modeSuppression}
+            <a href="@{ChampionsController.delete(champion.id)}"><img class="icone" src="http://www.icone-png.com/png/19/18859.png" title="Retirer ${champion.nom} de la sélection"></a>
+        #{/if}
+    </div>
     #{/if}
     #{/list}
 </div>

@@ -1,8 +1,28 @@
+body.accueil{
+    margin:0;
+    padding:0;
+    background: url(http://img0.ndsstatic.com/wallpapers/1707897919270d8fe9ceff4dd335cc81_large.jpeg) no-repeat center fixed;
+    -webkit-background-size: cover; /* pour Chrome et Safari */
+    -moz-background-size: cover; /* pour Firefox */
+    -o-background-size: cover; /* pour Opera */
+    background-size: cover; /* version standardisée */
+}
+
+a.accueil{
+    color: white;
+    font-size:large;
+    display:block;
+    text-align:center;
+    margin-top: 19px;
+}
+
 *{
     box-sizing:border-box;
 }
 
 div.tableau{
+    margin-left: auto;
+    margin-right: auto;
     width: 301px;
 }
 
