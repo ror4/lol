@@ -157,10 +157,15 @@ Ajouter un Champion <br/>
 <div class="tableau">
     #{list items:listeChampion, as:'champion'}
     #{if champion.ligne.equals(ligne)}
-    <div class="col0"># ${champion.preference} : ${champion.nom}<br/><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
+    <div class="col0 conteneur"># ${champion.preference} : ${champion.nom}<br/><img class="modif" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"><a href="@{ChampionsController.delete(champion.id)}"><img class="icone" src="http://www.icone-png.com/png/19/18859.png" title="Supprimer ${champion.nom}"></a></div>
     #{/if}
     #{/list}
 </div>
+
+<!--<div class="conteneur">-->
+    <!--<img class="contenu" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Akali.png" title="${champion.nom}" border="4">-->
+    <!--<img class="apercu" src="http://www.icone-png.com/png/19/18859.png" title="Fermer">-->
+<!--</div>-->
 
 <!--<img class="cachee" id="1" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Aatrox.png" title="Aatrox" border="4">-->
 <!--<img class="cachee" id="2" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/Ahri.png" title="Ahri" border="4">-->

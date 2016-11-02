@@ -20,6 +20,10 @@ public class ChampionService {
         }
     }
 
+    public static void supprimer(Long idChampion) {
+        Champion.delete("id=?",idChampion);
+    }
+
     public static List<Champion> getAllChampions(){
         return Champion.findAll();
     }

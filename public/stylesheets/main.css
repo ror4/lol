@@ -3,12 +3,12 @@
 }
 
 div.tableau{
-    width: 60%;
+    width: 301px;
 }
 
 div.col{
 
-    width: 20%;
+    width: 60px;
     text-align:center;
     border-right: 1px solid red;
     float:left;
@@ -16,14 +16,14 @@ div.col{
 
 div.col0{
 
-    width: 20%;
+    width: 100px;
     text-align:center;
     float:left;
 }
 
 div.col1{
 
-    width: 20%;
+    width: 61px;
     text-align:center;
     border-left: 1px solid red;
     border-right: 1px solid red;
@@ -40,12 +40,46 @@ div.ligne1{
 
 div.ligne{
     width: 100%;
-    height: 176px;
+    height: 60px;
     text-align:center;
     border-bottom: 1px solid red;
 }
 
 img.ligne{
-    width: 95%;
+    width: 59px;
+    height: 59px;
     align:center;
+}
+
+img.modif{
+    width: 80px;
+    height: 80px;
+}
+
+img.icone{
+    position: absolute;
+    width:100px;
+    display: none;
+}
+
+.conteneur {
+    position: relative;
+    display: inline-block;
+}
+
+.conteneur:hover .icone {
+    display: block;
+}
+
+.conteneur:hover .modif {
+    width:100px;
+    height:100px;
+}
+
+.icone {
+    top: 20px;
+    left: 0px;
+    position: absolute;
+    width:50%;
+    display: none;
 }

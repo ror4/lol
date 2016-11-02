@@ -25,6 +25,11 @@ public class ChampionsController extends Controller {
         afficher();
     }
 
+    public static void delete(Long idChampion) {
+        ChampionService.supprimer(idChampion);
+        afficher();
+    }
+
     public static void afficher() {
         List<Champion> listeChampion = ChampionService.getAllChampions();
         List<Integer> tailleListes = getMaxValueLigne(listeChampion);

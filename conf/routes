@@ -9,6 +9,7 @@ GET     /                                       Application.index
 GET    /ajouterChampion                         ChampionsController.create(ligne,preference)
 POST   /ajouterChampion                         ChampionsController.save
 GET    /liste                                   ChampionsController.afficher
+GET    /deleteChampion                          ChampionsController.delete(id)
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
