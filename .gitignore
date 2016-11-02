@@ -1,3 +1,5 @@
 *.ipr
 *.iml
 tmp/
+modules/
+testLol.iws
