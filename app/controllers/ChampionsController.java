@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 public class ChampionsController extends Controller {
 
-    public static void create(String ligne, Integer preference) {
+    public static void create(String ligne, int preference) {
         List<Champion> listeChampion = ChampionService.getAllChampions();
         renderTemplate("/Lignes/create.html",ligne,preference,listeChampion);
     }
@@ -32,18 +32,17 @@ public class ChampionsController extends Controller {
     }
 
     public static void afficher() {
-        List<Champion> listeChampion = ChampionService.getAllChampions();
-        List<Integer> tailleListes = getMaxValueLigne(listeChampion);
-        Integer preferenceMax = getMaxValuePreference(listeChampion);
-        List<Champion> listeChampion2 = new ArrayList();
+        List<Integer> tailleListes = getMaxValueLigne(ChampionService.getAllChampions());
+        Integer preferenceMax = getMaxValuePreference(ChampionService.getAllChampions());
+        List<Champion> listeChampion = new ArrayList();
         for(int i=1; i<=preferenceMax; i++){
-            for(int j=0; j<listeChampion.size(); j++){
-                if(listeChampion.get(j).preference==i){
-                    listeChampion2.add(listeChampion.get(j));
+            for(int j=0; j<ChampionService.getAllChampions().size(); j++){
+                if(ChampionService.getAllChampions().get(j).preference==i){
+                    listeChampion.add(ChampionService.getAllChampions().get(j));
                 }
             }
         }
-        renderTemplate("/Lignes/afficher.html",listeChampion2,tailleListes);
+        renderTemplate("/Lignes/afficher.html",listeChampion,tailleListes);
     }
 
     public static List<Integer> getMaxValueLigne(List<Champion> listeChampion){
@@ -62,12 +61,17 @@ public class ChampionsController extends Controller {
         return resultat;
     }
 
-    public static Integer getMaxValuePreference(List<Champion> listeChampion) {
+    public static int getMaxValuePreference(List<Champion> listeChampion) {
         List<Integer> preferences = new ArrayList();
         for (int i = 0; i < listeChampion.size(); ++i) {
             preferences.add(listeChampion.get(i).preference);
         }
-        return Collections.max(preferences).intValue();
+        if(preferences.size()!=0){
+            return Collections.max(preferences);
+        }
+        else{
+            return 0;
+        }
     }
 }
 
