@@ -2,6 +2,20 @@
  * Created by Formation on 26/10/2016.
  */
 
+$(document).ready(function() {
+
+$( "button.toggleSuppression" ).click(function() {
+    $( ".toggleSuppression" ).toggle();
+});
+
+$( "button.toggleClassement" ).click(function() {
+    $( ".toggleClassement" ).toggle();
+});
+
+});
+
+
+
 //$(function() {
 //
 //    $("select").click(function(){

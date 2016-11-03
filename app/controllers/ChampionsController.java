@@ -6,6 +6,7 @@ import services.ChampionService;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,9 +16,9 @@ import java.util.stream.Collectors;
 
 public class ChampionsController extends Controller {
 
-    public static void create(String ligne, Integer preference, Boolean modeSuppression) {
+    public static void create(String ligne, Integer preference) {
         List<Champion> listeChampion = ChampionService.getAllChampions();
-        renderTemplate("/Lignes/create.html",ligne,preference,listeChampion,modeSuppression);
+        renderTemplate("/Lignes/create.html",ligne,preference,listeChampion);
     }
 
     public static void save(Champion champion) {
@@ -33,7 +34,16 @@ public class ChampionsController extends Controller {
     public static void afficher() {
         List<Champion> listeChampion = ChampionService.getAllChampions();
         List<Integer> tailleListes = getMaxValueLigne(listeChampion);
-        renderTemplate("/Lignes/afficher.html",listeChampion,tailleListes);
+        Integer preferenceMax = getMaxValuePreference(listeChampion);
+        List<Champion> listeChampion2 = new ArrayList();
+        for(int i=1; i<=preferenceMax; i++){
+            for(int j=0; j<listeChampion.size(); j++){
+                if(listeChampion.get(j).preference==i){
+                    listeChampion2.add(listeChampion.get(j));
+                }
+            }
+        }
+        renderTemplate("/Lignes/afficher.html",listeChampion2,tailleListes);
     }
 
     public static List<Integer> getMaxValueLigne(List<Champion> listeChampion){
@@ -51,4 +61,13 @@ public class ChampionsController extends Controller {
         resultat.add(Collections.max(longueurLigne));
         return resultat;
     }
+
+    public static Integer getMaxValuePreference(List<Champion> listeChampion) {
+        List<Integer> preferences = new ArrayList();
+        for (int i = 0; i < listeChampion.size(); ++i) {
+            preferences.add(listeChampion.get(i).preference);
+        }
+        return Collections.max(preferences).intValue();
+    }
 }
+

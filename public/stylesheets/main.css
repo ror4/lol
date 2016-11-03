@@ -41,6 +41,16 @@ div.col0{
     float:left;
 }
 
+div.tableauGrand{
+    width: 600px;
+}
+
+div.colGrande{
+
+    width: 200px;
+    float:left;
+}
+
 div.col1{
 
     width: 61px;

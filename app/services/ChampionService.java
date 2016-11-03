@@ -27,4 +27,6 @@ public class ChampionService {
     public static List<Champion> getAllChampions(){
         return Champion.findAll();
     }
+
+
 }

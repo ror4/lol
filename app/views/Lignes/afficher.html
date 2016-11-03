@@ -2,12 +2,11 @@
 
 <a href="/">Retourner à l'accueil</a><br/><br/>
 
-
 <br/><br/>
 
 <div class="tableau">
     <div class="col1">
-        <div class="ligne1"><strong>Top</strong><br/><a href="@{ChampionsController.create(ligne='Top',preference=tailleListes.get(0)+1,modeSuppression=false)}">&{'Modifier'}</a></div>
+        <div class="ligne1"><strong>Top</strong><br/><a href="@{ChampionsController.create(ligne='Top',preference=tailleListes.get(0)+1)}">&{'Modifier'}</a></div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Top")}
         <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
