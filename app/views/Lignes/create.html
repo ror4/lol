@@ -178,12 +178,15 @@
     #{if champion.ligne.equals(ligne)}
     <div class="col0 conteneur">
         <div class="toggleClassement"># ${champion.preference} : ${champion.nom}</div>
-        <form class="toggleClassement" style="display: none">
-            <select name="champion.preference">
+        <form class="toggleClassement" style="display: none" action="@{ChampionsController.changementPreference}" method="post">
+            <select name="truc">
                 #{list items:1..preference, as:'i'}
                 <option value="i">${i}</option>
                 #{/list}
             </select>
+            <input type="hidden" name="champion.ligne" value=${ligne}>
+            <input type="hidden" name="champion.nom" value=${champion.nom}>
+            <input type="hidden" name="champion.preference" value=25>
             <input type="submit" value="Ok">
         </form>
         <img class="modif" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4">

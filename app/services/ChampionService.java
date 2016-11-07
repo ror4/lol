@@ -24,6 +24,10 @@ public class ChampionService {
         Champion.delete("id=?",idChampion);
     }
 
+    public static void changerPreference(Champion champion) {
+        champion.save();
+    }
+
     public static List<Champion> getAllChampions(){
         return Champion.findAll();
     }

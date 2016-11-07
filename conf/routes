@@ -10,6 +10,7 @@ GET    /ajouterChampion                         ChampionsController.create(ligne
 POST   /ajouterChampion                         ChampionsController.save
 GET    /liste                                   ChampionsController.afficher
 GET    /deleteChampion                          ChampionsController.delete(id)
+POST   /changementPref                          ChampionsController.changementPreference
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

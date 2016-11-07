@@ -7,6 +7,8 @@ import services.ChampionService;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static java.lang.Integer.parseInt;
+
 /**
  * Created by Formation on 25/10/2016.
  */
@@ -25,6 +27,12 @@ public class ChampionsController extends Controller {
 
     public static void delete(Long idChampion) {
         ChampionService.supprimer(idChampion);
+        afficher();
+    }
+
+    public static void changementPreference(Champion champion) {
+
+        ChampionService.changerPreference(champion);
         afficher();
     }
 
