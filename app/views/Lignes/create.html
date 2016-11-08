@@ -178,10 +178,10 @@
     #{if champion.ligne.equals(ligne)}
     <div class="col0 conteneur">
         <div class="toggleClassement"># ${champion.preference} : ${champion.nom}</div>
-        <form class="toggleClassement" style="display: none" action="@{ChampionsController.changementPreference(champion,i,champion.id)}" method="post">
+        <form class="toggleClassement" style="display: none" action="@{ChampionsController.changementPreference(champion.id)}" method="post">
             <select name="champion.preference">
                 #{list items:1..preference, as:'i'}
-                    <option value=i>${i}</option>
+                    <option value='${i}'>${i}</option>
                 #{/list}
             </select>
             <input type="submit" value="Ok">

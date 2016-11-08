@@ -16,7 +16,7 @@ import static java.lang.Integer.parseInt;
 public class ChampionsController extends Controller {
 
     public static void create(String ligne, int preference) {
-        List<Champion> listeChampion = ChampionService.getAllChampions();
+        List<Champion> listeChampion = trier(ChampionService.getAllChampions());
         renderTemplate("/Lignes/create.html",ligne,preference,listeChampion);
     }
 
@@ -30,72 +30,138 @@ public class ChampionsController extends Controller {
         afficher();
     }
 
-    public static void changementPreference(Champion champion, int pref, Long idChampion) {
-        ChampionService.changerPreference(champion, pref, idChampion);
+    public static void changementPreference(Long idChampion, Champion champion) {
+        ChampionService.changerPreference(idChampion,champion.preference);
         afficher();
+    }
+
+    public static List<Champion> trier(List<Champion> listeChampion){
+        List<Champion> listeChampionTriee = new ArrayList();
+        Integer preferenceMax = getMaxValuePreference(listeChampion);
+        for(int i=1; i<=preferenceMax; i++){
+            for(int j=0; j<listeChampion.size(); j++){
+                if(listeChampion.get(j).preference==i){
+                    listeChampionTriee.add(listeChampion.get(j));
+                }
+            }
+        }
+        return listeChampionTriee;
     }
 
     public static void afficher() {
         List<Integer> tailleListes = getMaxValueLigne(ChampionService.getAllChampions());
-        Integer preferenceMax = getMaxValuePreference(ChampionService.getAllChampions());
-        List<Champion> listeChampion = new ArrayList();
-        for(int i=1; i<=preferenceMax; i++){
-            for(int j=0; j<ChampionService.getAllChampions().size(); j++){
-                if(ChampionService.getAllChampions().get(j).preference==i){
-                    listeChampion.add(ChampionService.getAllChampions().get(j));
-                }
-            }
-        }
-        List<Champion> poolChampions = combinaisons(listeChampion);
+        List<Champion> listeChampion = trier(ChampionService.getAllChampions());
+        int ordre = 1;
+        List<Champion> poolChampions = combinaisons(listeChampion,ordre);
         renderTemplate("/Lignes/afficher.html",listeChampion,tailleListes,poolChampions);
     }
 
-    public static List<Champion> combinaisons(List<Champion> listeChampion){
+    public static List<Integer> getMaxValueLigne(List<Champion> listeChampion){
+        List<Integer> longueurLigne = new ArrayList();
+        List<Integer> resultat = new ArrayList();
+        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Top")).collect(Collectors.toList()).size());
+        longueurLigne.add(getMaxValuePreference(listeChampion.stream().filter(champion -> champion.ligne.equals("Top")).collect(Collectors.toList())));
+        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Jungle")).collect(Collectors.toList()).size());
+        longueurLigne.add(getMaxValuePreference(listeChampion.stream().filter(champion -> champion.ligne.equals("Jungle")).collect(Collectors.toList())));
+        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Mid")).collect(Collectors.toList()).size());
+        longueurLigne.add(getMaxValuePreference(listeChampion.stream().filter(champion -> champion.ligne.equals("Mid")).collect(Collectors.toList())));
+        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Adc")).collect(Collectors.toList()).size());
+        longueurLigne.add(getMaxValuePreference(listeChampion.stream().filter(champion -> champion.ligne.equals("Adc")).collect(Collectors.toList())));
+        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Support")).collect(Collectors.toList()).size());
+        longueurLigne.add(getMaxValuePreference(listeChampion.stream().filter(champion -> champion.ligne.equals("Support")).collect(Collectors.toList())));
+        for(int i = 0; i <= 9; i++)
+        {
+            resultat.add(longueurLigne.get(i));
+        }
+        resultat.add(Collections.max(longueurLigne));
+        return resultat;
+    }
+
+    public static int getMaxValuePreference(List<Champion> listeChampion) {
+        List<Integer> preferences = new ArrayList();
+        for (int i = 0; i < listeChampion.size(); ++i) {
+            preferences.add(listeChampion.get(i).preference);
+        }
+        if(preferences.size()!=0){
+            return Collections.max(preferences);
+        }
+        else{
+            return 0;
+        }
+    }
+
+    public static List<Champion> combinaisons(List<Champion> listeChampion, int ordre){
         final int TOP=0;
         final int JUNGLE=4;
         final int MID=1;
         final int ADC=2;
         final int SUPPORT=3;
-        List<Champion> tops = new ArrayList();
-        List<Champion> mids = new ArrayList();
-        List<Champion> adcs = new ArrayList();
-        List<Champion> supports = new ArrayList();
-        List<Champion> junglers = new ArrayList();
-
-        for(int i=0;i<listeChampion.size();i++){
-            if(listeChampion.get(i).ligne.equals("Top")){
-                tops.add(listeChampion.get(i));
-            }
-            if(listeChampion.get(i).ligne.equals("Jungle")){
-                junglers.add(listeChampion.get(i));
-            }
-            if(listeChampion.get(i).ligne.equals("Mid")){
-                mids.add(listeChampion.get(i));
-            }
-            if(listeChampion.get(i).ligne.equals("Adc")){
-                adcs.add(listeChampion.get(i));
-            }
-            if(listeChampion.get(i).ligne.equals("Support")){
-                supports.add(listeChampion.get(i));
-            }
+        List<Champion> listeStatique1 = new ArrayList();
+        List<Champion> listeStatique2 = new ArrayList();
+        List<Champion> listeStatique3 = new ArrayList();
+        List<Champion> listeStatique4 = new ArrayList();
+        List<Champion> listeStatique5 = new ArrayList();
+        List<Champion> liste1 = new ArrayList();
+        List<Champion> liste2 = new ArrayList();
+        List<Champion> liste3 = new ArrayList();
+        List<Champion> liste4 = new ArrayList();
+        List<Champion> liste5 = new ArrayList();
+        switch (ordre) {
+            case 1:
+                for(int i=0;i<listeChampion.size();i++){
+                    if(listeChampion.get(i).ligne.equals("Top")){
+                        listeStatique1.add(listeChampion.get(i));
+                    }
+                    if(listeChampion.get(i).ligne.equals("Jungle")){
+                        listeStatique2.add(listeChampion.get(i));
+                    }
+                    if(listeChampion.get(i).ligne.equals("Mid")){
+                        listeStatique3.add(listeChampion.get(i));
+                    }
+                    if(listeChampion.get(i).ligne.equals("Adc")){
+                        listeStatique4.add(listeChampion.get(i));
+                    }
+                    if(listeChampion.get(i).ligne.equals("Support")){
+                        listeStatique5.add(listeChampion.get(i));
+                    }
+                }
+                liste1.addAll(listeStatique1);
+                liste2.addAll(listeStatique2);
+                liste3.addAll(listeStatique3);
+                liste4.addAll(listeStatique4);
+                liste5.addAll(listeStatique5);
+                break;
+            case 2:
+                for(int i=0;i<listeChampion.size();i++){
+                    if(listeChampion.get(i).ligne.equals("Jungle")){
+                        listeStatique1.add(listeChampion.get(i));
+                    }
+                    if(listeChampion.get(i).ligne.equals("Top")){
+                        listeStatique2.add(listeChampion.get(i));
+                    }
+                    if(listeChampion.get(i).ligne.equals("Mid")){
+                        listeStatique3.add(listeChampion.get(i));
+                    }
+                    if(listeChampion.get(i).ligne.equals("Adc")){
+                        listeStatique4.add(listeChampion.get(i));
+                    }
+                    if(listeChampion.get(i).ligne.equals("Support")){
+                        listeStatique5.add(listeChampion.get(i));
+                    }
+                }
+                liste1.addAll(listeStatique1);
+                liste2.addAll(listeStatique2);
+                liste3.addAll(listeStatique3);
+                liste4.addAll(listeStatique4);
+                liste5.addAll(listeStatique5);
+                break;
         }
-
-        List<Champion> listeTop = new ArrayList();
-        listeTop.addAll(tops);
-        List<Champion> listeMid = new ArrayList();
-        listeMid.addAll(mids);
-        List<Champion> listeAdc = new ArrayList();
-        listeAdc.addAll(adcs);
-        List<Champion> listeSupport = new ArrayList();
-        listeSupport.addAll(supports);
-        List<Champion> listeJungle = new ArrayList();
-        listeJungle.addAll(junglers);
         LinkedList<Champion> listeChampions = new LinkedList<>();
         LinkedList<Champion> listeTemp = new LinkedList<>();
         List<Champion> listeCombosPossibles = new ArrayList<>();
         int j =1;
         int res =1;
-        listeTemp.addAll(listeTop);
+        listeTemp.addAll(liste1);
 
         while (j < 6) {
             if (listeTemp.size() > 0) {
@@ -111,32 +177,34 @@ public class ChampionsController extends Controller {
 //                            System.out.print(listeChampions.get(ADC).name + "(adc), ");
 //                            System.out.print(listeChampions.get(SUPPORT).name + "(support)");
 //                            System.out.println("");
-                            listeCombosPossibles.add(listeChampions.get(0));
+                            for(int i=0;i<5;i++){
+                                listeCombosPossibles.add(listeChampions.get(i));
+                            }
                             listeChampions.removeLast();
                             res = res + 1;
                             break;
                         case 4:
                             listeTemp.clear();
-                            listeSupport.remove(champManipule);
-                            listeTemp.addAll(listeJungle);
+                            liste4.remove(champManipule);
+                            listeTemp.addAll(liste5);
                             j = j + 1;
                             break;
                         case 3:
                             listeTemp.clear();
-                            listeAdc.remove(champManipule);
-                            listeTemp.addAll(listeSupport);
+                            liste3.remove(champManipule);
+                            listeTemp.addAll(liste4);
                             j = j + 1;
                             break;
                         case 2:
                             listeTemp.clear();
-                            listeMid.remove(champManipule);
-                            listeTemp.addAll(listeAdc);
+                            liste2.remove(champManipule);
+                            listeTemp.addAll(liste3);
                             j = j + 1;
                             break;
                         case 1:
                             listeTemp.clear();
-                            listeTop.remove(champManipule);
-                            listeTemp.addAll(listeMid);
+                            liste1.remove(champManipule);
+                            listeTemp.addAll(liste2);
                             j = j + 1;
                             break;
                     }
@@ -156,22 +224,22 @@ public class ChampionsController extends Controller {
                     switch (j) {
                         case 4:
                             listeTemp.clear();
-                            listeTemp.addAll(listeSupport);
+                            listeTemp.addAll(liste4);
                             break;
                         case 3:
                             listeTemp.clear();
-                            listeSupport.addAll(supports);
-                            listeTemp.addAll(listeAdc);
+                            liste4.addAll(listeStatique4);
+                            listeTemp.addAll(liste3);
                             break;
                         case 2:
                             listeTemp.clear();
-                            listeAdc.addAll(adcs);
-                            listeTemp.addAll(listeMid);
+                            liste3.addAll(listeStatique3);
+                            listeTemp.addAll(liste2);
                             break;
                         case 1:
                             listeTemp.clear();
-                            listeMid.addAll(mids);
-                            listeTemp.addAll(listeTop);
+                            liste2.addAll(listeStatique2);
+                            listeTemp.addAll(liste1);
                             break;
                     }
                 }
@@ -182,35 +250,6 @@ public class ChampionsController extends Controller {
 
     public static boolean test(LinkedList<Champion> listeChampion){
         return true;
-    }
-
-    public static List<Integer> getMaxValueLigne(List<Champion> listeChampion){
-        List<Integer> longueurLigne = new ArrayList();
-        List<Integer> resultat = new ArrayList();
-        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Top")).collect(Collectors.toList()).size());
-        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Jungle")).collect(Collectors.toList()).size());
-        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Mid")).collect(Collectors.toList()).size());
-        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Adc")).collect(Collectors.toList()).size());
-        longueurLigne.add(listeChampion.stream().filter(champion -> champion.ligne.equals("Support")).collect(Collectors.toList()).size());
-        for(int i = 0; i <= 4; i++)
-        {
-            resultat.add(longueurLigne.get(i));
-        }
-        resultat.add(Collections.max(longueurLigne));
-        return resultat;
-    }
-
-    public static int getMaxValuePreference(List<Champion> listeChampion) {
-        List<Integer> preferences = new ArrayList();
-        for (int i = 0; i < listeChampion.size(); ++i) {
-            preferences.add(listeChampion.get(i).preference);
-        }
-        if(preferences.size()!=0){
-            return Collections.max(preferences);
-        }
-        else{
-            return 0;
-        }
     }
 }
 

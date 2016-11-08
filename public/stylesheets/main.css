@@ -75,6 +75,12 @@ div.ligne{
     border-bottom: 1px solid red;
 }
 
+div.ligneH{
+    width: 100%;
+    text-align:center;
+    border-bottom: 1px solid red;
+}
+
 img.ligne{
     width: 59px;
     height: 59px;

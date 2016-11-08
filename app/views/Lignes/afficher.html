@@ -4,84 +4,120 @@
 
 <br/><br/>
 
-${poolChampions.size}
-
 <div class="tableau">
     <div class="col1">
-        <div class="ligne1"><strong>Top</strong><br/><a href="@{ChampionsController.create(ligne='Top',preference=tailleListes.get(0)+1)}">&{'Modifier'}</a></div>
+        <div class="ligne1"><strong>Top</strong><br/><a href="@{ChampionsController.create(ligne='Top',preference=tailleListes.get(1)+1)}">&{'Modifier'}</a></div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Top")}
         <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
         #{/if}
         #{/list}
-        #{if tailleListes.get(0)<tailleListes.get(5)}
-            #{list items:1..tailleListes.get(5)-tailleListes.get(0), as:'i'}
+        #{if tailleListes.get(0)<tailleListes.get(10)}
+            #{list items:1..tailleListes.get(10)-tailleListes.get(0), as:'i'}
             <div class="ligne"></div>
             #{/list}
         #{/if}
     </div>
     <div class="col">
-        <div class="ligne1"><strong>Jungle</strong><br/><a href="@{ChampionsController.create(ligne="Jungle",preference=tailleListes.get(1)+1)}">&{'Modifier'}</a></div>
+        <div class="ligne1"><strong>Jungle</strong><br/><a href="@{ChampionsController.create(ligne='Jungle',preference=tailleListes.get(3)+1)}">&{'Modifier'}</a></div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Jungle")}
         <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
         #{/if}
         #{/list}
-        #{if tailleListes.get(1)<tailleListes.get(5)}
-        #{list items:1..tailleListes.get(5)-tailleListes.get(1), as:'i'}
+        #{if tailleListes.get(2)<tailleListes.get(10)}
+        #{list items:1..tailleListes.get(10)-tailleListes.get(2), as:'i'}
         <div class="ligne"></div>
         #{/list}
         #{/if}
     </div>
     <div class="col">
-        <div class="ligne1"><strong>Mid</strong><br/><a href="@{ChampionsController.create(ligne="Mid",preference=tailleListes.get(2)+1)}">&{'Modifier'}</a></div>
+        <div class="ligne1"><strong>Mid</strong><br/><a href="@{ChampionsController.create(ligne='Mid',preference=tailleListes.get(5)+1)}">&{'Modifier'}</a></div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Mid")}
         <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
         #{/if}
         #{/list}
-        #{if tailleListes.get(2)<tailleListes.get(5)}
-        #{list items:1..tailleListes.get(5)-tailleListes.get(2), as:'i'}
+        #{if tailleListes.get(4)<tailleListes.get(10)}
+        #{list items:1..tailleListes.get(10)-tailleListes.get(4), as:'i'}
         <div class="ligne"></div>
         #{/list}
         #{/if}
     </div>
     <div class="col">
-        <div class="ligne1"><strong>Adc</strong><br/><a href="@{ChampionsController.create(ligne="Adc",preference=tailleListes.get(3)+1)}">&{'Modifier'}</a></div>
+        <div class="ligne1"><strong>Adc</strong><br/><a href="@{ChampionsController.create(ligne='Adc',preference=tailleListes.get(7)+1)}">&{'Modifier'}</a></div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Adc")}
         <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
         #{/if}
         #{/list}
-        #{if tailleListes.get(3)<tailleListes.get(5)}
-        #{list items:1..tailleListes.get(5)-tailleListes.get(3), as:'i'}
+        #{if tailleListes.get(6)<tailleListes.get(10)}
+        #{list items:1..tailleListes.get(10)-tailleListes.get(6), as:'i'}
         <div class="ligne"></div>
         #{/list}
         #{/if}
     </div>
     <div class="col">
-        <div class="ligne1"><strong>Support</strong><br/><a href="@{ChampionsController.create(ligne='Support',preference=tailleListes.get(4)+1)}">&{'Modifier'}</a></div>
+        <div class="ligne1"><strong>Support</strong><br/><a href="@{ChampionsController.create(ligne='Support',preference=tailleListes.get(9)+1)}">&{'Modifier'}</a></div>
         #{list items:listeChampion, as:'champion'}
         #{if champion.ligne.equals("Support")}
         <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
         #{/if}
         #{/list}
-        #{if tailleListes.get(4)<tailleListes.get(5)}
-        #{list items:1..tailleListes.get(5)-tailleListes.get(4), as:'i'}
+        #{if tailleListes.get(8)<tailleListes.get(10)}
+        #{list items:1..tailleListes.get(10)-tailleListes.get(8), as:'i'}
         <div class="ligne"></div>
         #{/list}
         #{/if}
     </div>
 </div>
 
-*{<br/><br/>
-Champions TOP : <br/><br/>
+<div style="clear:both"></div>
 
-#{list items:listeChampion, as:'champion'}
-#{if champion.ligne.equals("Top")}
-${champion_index} : ${champion.nom},${champion.ligne}
-#{/if}
-#{/list}
-
+<br/><br/><br/>
+<div align="center">${poolChampions.size()/5} combinaisons possibles :</div>
 <br/>
-Nombre de champions dans la liste : ${listeChampion.size()}}*
+
+<div class="tableau">
+    <div class="col1">
+        <div class="ligne1"><strong>Top</strong></div>
+        #{list items:poolChampions, as:'champion'}
+            #{if champion.ligne.equals("Top")}
+                <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
+            #{/if}
+        #{/list}
+    </div>
+    <div class="col">
+        <div class="ligne1"><strong>Jungle</strong></div>
+        #{list items:poolChampions, as:'champion'}
+        #{if champion.ligne.equals("Jungle")}
+        <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
+        #{/if}
+        #{/list}
+    </div>
+    <div class="col">
+        <div class="ligne1"><strong>Mid</strong></div>
+        #{list items:poolChampions, as:'champion'}
+        #{if champion.ligne.equals("Mid")}
+        <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
+        #{/if}
+        #{/list}
+    </div>
+    <div class="col">
+        <div class="ligne1"><strong>Adc</strong></div>
+        #{list items:poolChampions, as:'champion'}
+        #{if champion.ligne.equals("Adc")}
+        <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
+        #{/if}
+        #{/list}
+    </div>
+    <div class="col">
+        <div class="ligne1"><strong>Support</strong></div>
+        #{list items:poolChampions, as:'champion'}
+        #{if champion.ligne.equals("Support")}
+        <div class="ligne"><img class="ligne" src="http://ddragon.leagueoflegends.com/cdn/6.20.1/img/champion/${champion.nom}.png" title="${champion.nom}" border="4"></div>
+        #{/if}
+        #{/list}
+    </div>
+</div>
+
