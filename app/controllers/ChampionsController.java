@@ -30,9 +30,8 @@ public class ChampionsController extends Controller {
         afficher();
     }
 
-    public static void changementPreference(Champion champion) {
-
-        ChampionService.changerPreference(champion);
+    public static void changementPreference(Champion champion, int pref, Long idChampion) {
+        ChampionService.changerPreference(champion, pref, idChampion);
         afficher();
     }
 
